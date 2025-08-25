@@ -1,0 +1,17 @@
+services:
+  db:
+    image: bitnami/postgresql:latest
+    container_name: office_management_db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_DATABASE=view_office_dev
+    volumes:
+      - postgres_data:/bitnami/postgresql
+
+volumes:
+  postgres_data:
+    driver: local
