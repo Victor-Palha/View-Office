@@ -7,6 +7,19 @@
 # General application configuration
 import Config
 
+config :view_office, :scopes,
+  user: [
+    default: true,
+    module: ViewOffice.Accounts.Scope,
+    assign_key: :current_scope,
+    access_path: [:user, :id],
+    schema_key: :user_id,
+    schema_type: :id,
+    schema_table: :users,
+    test_data_fixture: ViewOffice.AccountsFixtures,
+    test_setup_helper: :register_and_log_in_user
+  ]
+
 config :view_office,
   ecto_repos: [ViewOffice.Repo],
   generators: [timestamp_type: :utc_datetime]
