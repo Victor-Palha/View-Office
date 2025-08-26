@@ -2,6 +2,17 @@ defmodule ViewOffice.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @type t :: %__MODULE__{
+          id: integer(),
+          email: String.t(),
+          name: String.t(),
+          password_hash: String.t(),
+          password: String.t() | nil,
+          role: String.t(),
+          inserted_at: NaiveDateTime.t(),
+          updated_at: NaiveDateTime.t()
+        }
+
   @roles ["COLLABORATOR", "ADMIN"]
 
   schema "users" do
