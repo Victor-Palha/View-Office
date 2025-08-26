@@ -37,4 +37,8 @@ defmodule ViewOffice.Scopes.User do
   def for_admin(%User{role: "ADMIN"} = user) do
     %__MODULE__{user: user}
   end
+
+  def for_admin(%User{}), do: nil
+
+  def for_admin(nil), do: nil
 end
