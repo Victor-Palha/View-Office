@@ -1,9 +1,11 @@
 defmodule ViewOffice.UserFixtures do
   def user_fixture(attrs \\ %{}) do
+    unique = System.unique_integer([:positive])
+
     {:ok, user} =
       attrs
       |> Enum.into(%{
-        email: "test@example.com",
+        email: "test#{unique}@example.com",
         name: "Test User",
         password: "password",
         role: "ADMIN"
