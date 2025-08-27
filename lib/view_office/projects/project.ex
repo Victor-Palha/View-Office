@@ -14,7 +14,7 @@ defmodule ViewOffice.Projects.Project do
     field :name, :string
     field :description, :string
 
-    has_many :members, ViewOffice.Members.Member
+    has_many :members, ViewOffice.Accounts.Member
     timestamps(type: :utc_datetime)
   end
 
