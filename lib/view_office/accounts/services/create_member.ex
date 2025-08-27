@@ -5,6 +5,7 @@ defmodule ViewOffice.Accounts.Services.CreateMember do
   alias ViewOffice.Scopes.User, as: UserScope
   alias ViewOffice.Scopes.Member, as: MemberScope
 
+  @spec call(Member.t(), UserScope.t() | MemberScope.t()) :: {:ok, Member.t()} | {:error, Ecto.Changeset.t()} | {:error, :unauthorized}
   def call(attrs, %UserScope{user: %User{role: "ADMIN"}} = _scope), do: create_member(attrs)
 
   def call(attrs, %MemberScope{member: %Member{role: role}} = _scope) when role in ["Tech Manager", "PM", "Tech Lead"], do: create_member(attrs)

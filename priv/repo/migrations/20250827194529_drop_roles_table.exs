@@ -2,7 +2,7 @@ defmodule ViewOffice.Repo.Migrations.DropRolesTable do
   use Ecto.Migration
 
   def change do
-    alter table(:member_roles) do
+    alter table(:members) do
       add :role, :string, null: false
     end
 
