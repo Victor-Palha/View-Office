@@ -14,7 +14,7 @@ defmodule ViewOffice.Projects.Services.CreateTest do
       assert {:ok, project} = Create.call(%{
         name: "Test Project",
         description: "A sample project for testing"
-      }, UserScope.for_admin(user))
+      }, UserScope.for_user(user))
 
       assert project.name == "Test Project"
       assert project.description == "A sample project for testing"
@@ -28,7 +28,7 @@ defmodule ViewOffice.Projects.Services.CreateTest do
       assert {:error, changeset} = Create.call(%{
         name: "",
         description: "A sample project for testing"
-      }, UserScope.for_admin(user))
+      }, UserScope.for_user(user))
 
       assert changeset.errors[:name] == {"can't be blank", [validation: :required]}
     end
@@ -41,7 +41,7 @@ defmodule ViewOffice.Projects.Services.CreateTest do
       assert {:error, :unauthorized} = Create.call(%{
         name: "Banana",
         description: "A sample project for testing"
-      }, UserScope.for_admin(user))
+      }, UserScope.for_user(user))
     end
   end
 end

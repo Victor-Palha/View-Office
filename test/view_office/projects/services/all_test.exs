@@ -9,7 +9,7 @@ defmodule ViewOffice.Projects.Services.AllTest do
 
     test "Should be able to return all projects if user are an admin" do
       user = user_fixture(%{role: "ADMIN", email: "banana@test.com"})
-      scope = UserScope.for_admin(user)
+      scope = UserScope.for_user(user)
       project_fixture(%{name: "Project 1"})
       projects = All.call(scope)
       assert length(projects) == 1

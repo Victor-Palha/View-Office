@@ -13,7 +13,7 @@ defmodule ViewOffice.ProjectFixtures do
         name: "Test Project",
         description: "A sample project for testing"
       })
-      |> ViewOffice.Projects.Services.Create.call(UserScope.for_admin(user))
+      |> ViewOffice.Projects.Services.Create.call(UserScope.for_user(user))
 
     project
   end

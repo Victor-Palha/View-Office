@@ -9,7 +9,7 @@ defmodule ViewOffice.Projects.Services.All do
     |> Repo.all()
   end
 
-  def call(_scope) do
+  def call(_) do
     {:error, :unauthorized}
   end
 end

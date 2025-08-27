@@ -4,8 +4,10 @@ defmodule ViewOffice.Accounts.Services.All do
   alias ViewOffice.Scopes.User, as: UserScope
 
   @spec call(%UserScope{}) :: [User.t() | term()]
-  def call(%UserScope{} = _scope) do
+  def call(%UserScope{user: %User{role: "ADMIN"}} = _scope) do
     User
     |> Repo.all()
   end
+
+  def call(_, _), do: {:error, :unauthorized}
 end

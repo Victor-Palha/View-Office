@@ -15,15 +15,9 @@ defmodule ViewOffice.Scopes.Member do
 
   Returns nil if no member is given.
   """
-  def for_all_members(%Member{} = member) do
+  def for_member(%Member{} = member) do
     %__MODULE__{member: member}
   end
 
-  def for_all_members(nil), do: nil
-
-  def for_managers(%Member{role: role} = member) when role in ["Tech Manager", "PM", "Tech Lead"] do
-    %__MODULE__{member: member}
-  end
-
-  def for_managers(nil), do: nil
+  def for_member(nil), do: nil
 end

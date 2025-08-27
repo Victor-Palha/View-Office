@@ -10,7 +10,5 @@ defmodule ViewOffice.Projects.Services.Create do
     |> Repo.insert()
   end
 
-  def call(_attrs, nil) do
-    {:error, :unauthorized}
-  end
+  def call(_, _), do: {:error, :unauthorized}
 end
