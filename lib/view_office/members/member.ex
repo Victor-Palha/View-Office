@@ -1,11 +1,11 @@
-defmodule ViewOffice.Accounts.Member do
+defmodule ViewOffice.Members.Member do
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "members" do
     belongs_to :user, ViewOffice.Accounts.User
     belongs_to :project, ViewOffice.Projects.Project
-    has_many :member_roles, ViewOffice.Accounts.MemberRoles
+    has_many :member_roles, ViewOffice.Members.MemberRoles
     timestamps()
   end
 

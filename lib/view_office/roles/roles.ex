@@ -1,10 +1,10 @@
-defmodule ViewOffice.Accounts.Roles do
+defmodule ViewOffice.Roles.Roles do
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "roles" do
     field :name, :string
-    has_many :member_roles, ViewOffice.Accounts.MemberRoles
+    has_many :member_roles, ViewOffice.Members.MemberRoles
     timestamps()
   end
 

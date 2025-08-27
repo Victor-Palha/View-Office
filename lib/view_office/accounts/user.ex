@@ -22,7 +22,7 @@ defmodule ViewOffice.Accounts.User do
     field :password, :string, virtual: true
     field :role, :string
 
-    has_many :members, ViewOffice.Accounts.Member
+    has_many :members, ViewOffice.Members.Member
     timestamps(type: :utc_datetime)
   end
 
