@@ -35,3 +35,7 @@ config :phoenix, :plug_init_mode, :runtime
 # Enable helpful, but potentially expensive runtime checks
 config :phoenix_live_view,
   enable_expensive_runtime_checks: true
+
+config :view_office, ViewOffice.Auth.Guardian,
+  issuer: "view_office",
+  secret_key: "tKqFY2WMAZzjewCTSmIv0PD3EYPTER7r4sOmjE3o045tSiWI3NhykMIGpbbk6qtg"
