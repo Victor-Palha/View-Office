@@ -1,0 +1,819 @@
+<div class="min-h-screen flex flex-col">
+  <div class="flex flex-col min-h-screen bg-background text-foreground">
+    <!-- Header -->
+    <header class="flex items-center justify-between h-16 px-4 border-b lg:px-6">
+      <a href="/" class="flex items-center">
+        <h1 class="text-xl font-bold">View Office - OCP</h1>
+      </a>
+
+      <div class="flex items-center gap-4">
+        <nav class="hidden gap-4 md:flex">
+          <a
+            id="features-link"
+            href="#features"
+            class="text-sm font-medium hover:underline underline-offset-4"
+            phx-hook="SmoothScroll"
+            id="features-link"
+          >
+            Features
+          </a>
+          <a
+            id="about-link"
+            href="#about"
+            class="text-sm font-medium hover:underline underline-offset-4"
+            phx-hook="SmoothScroll"
+          >
+            About
+          </a>
+        </nav>
+
+        <button
+          phx-click="toggle-mobile-menu"
+          class="p-2 rounded-full md:hidden hover:bg-gray-200 dark:hover:bg-gray-700"
+          aria-label="Toggle menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+
+        <.link
+          navigate={~p"/login"}
+          class="items-center justify-center hidden px-4 py-2 text-sm font-medium transition-colors border rounded-md shadow-sm md:inline-flex h-9 border-input bg-background hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+        >
+          Sign In
+        </.link>
+      </div>
+    </header>
+    
+<!-- Mobile Menu -->
+    <%= if @mobile_menu_open do %>
+      <div class="border-b md:hidden bg-background">
+        <div class="flex flex-col px-4 py-2 space-y-2">
+          <a
+            id="mobile-menu-features-link"
+            href="#features"
+            class="py-2 text-sm font-medium hover:underline underline-offset-4"
+            phx-click="toggle-mobile-menu"
+            phx-hook="SmoothScroll"
+          >
+            Features
+          </a>
+          <a
+            id="mobile-menu-about-link"
+            href="#about"
+            class="py-2 text-sm font-medium hover:underline underline-offset-4"
+            phx-click="toggle-mobile-menu"
+            phx-hook="SmoothScroll"
+          >
+            About
+          </a>
+          <.link
+            navigate={~p"/login"}
+            class="items-center justify-center w-full px-4 py-2 text-sm font-medium transition-colors border rounded-md shadow-sm h-9 border-input bg-background hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+            phx-click="toggle-mobile-menu"
+          >
+            Sign In
+          </.link>
+        </div>
+      </div>
+    <% end %>
+    
+<!-- Main Content -->
+    <main class="flex-1">
+      <!-- Hero Section -->
+      <section class="w-full py-12 bg-muted dark:bg-muted/50">
+        <div class="container px-4 mx-auto">
+          <div class="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
+            <div class="flex flex-col justify-center space-y-4">
+              <div class="space-y-2">
+                <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                  Streamline Your Project Management
+                </h1>
+                <p class="max-w-[600px] text-muted-foreground md:text-xl">
+                  Manage your team, projects, tasks, and timesheets all in one place. Boost productivity and
+                  collaboration with our intuitive platform.
+                </p>
+              </div>
+              <div class="flex flex-col gap-2 min-[400px]:flex-row">
+                <.link
+                  navigate={~p"/login"}
+                  class="inline-flex items-center justify-center h-10 px-8 text-sm font-medium transition-colors rounded-md shadow bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                >
+                  Get Started
+                </.link>
+                <a
+                  href="#features"
+                  class="inline-flex items-center justify-center h-10 px-8 text-sm font-medium transition-colors border rounded-md shadow-sm border-input bg-background hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+            <div class="flex items-center justify-center">
+              <img
+                src="/images/dashboard-preview.png"
+                width={550}
+                height={550}
+                alt="Dashboard Preview"
+                class="object-cover border rounded-lg shadow-lg dark:border-gray-700"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      
+<!-- Features Section -->
+      <section id="features" class="w-full py-12">
+        <div class="container px-4 mx-auto">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center">
+            <div class="space-y-2">
+              <div class="inline-block px-3 py-1 text-sm rounded-lg bg-muted dark:bg-muted/50">
+                Key Features
+              </div>
+              <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                Everything You Need to Manage Your Projects
+              </h2>
+              <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Our platform provides all the tools you need to manage your projects, teams, and tasks efficiently.
+              </p>
+            </div>
+          </div>
+          <div class="grid max-w-5xl grid-cols-1 gap-6 py-12 mx-auto md:grid-cols-2 lg:grid-cols-3">
+            <div class="flex flex-col items-center p-6 space-y-2 border rounded-lg shadow-sm dark:border-gray-700">
+              <div class="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-6 h-6 text-primary"
+                >
+                  <path d="M2 9V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-1" />
+                  <path d="M2 13h10" />
+                  <path d="m9 16 3-3-3-3" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">Project Management</h3>
+              <p class="text-center text-muted-foreground">
+                Create, track, and manage projects with ease. Set deadlines, assign tasks, and monitor progress.
+              </p>
+            </div>
+            <div class="flex flex-col items-center p-6 space-y-2 border rounded-lg shadow-sm dark:border-gray-700">
+              <div class="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-6 h-6 text-primary"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">Team Collaboration</h3>
+              <p class="text-center text-muted-foreground">
+                Manage your team members, assign roles, and facilitate seamless collaboration across projects.
+              </p>
+            </div>
+            <div class="flex flex-col items-center p-6 space-y-2 border rounded-lg shadow-sm dark:border-gray-700">
+              <div class="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-6 h-6 text-primary"
+                >
+                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                  <line x1="16" x2="16" y1="2" y2="6" />
+                  <line x1="8" x2="8" y1="2" y2="6" />
+                  <line x1="3" x2="21" y1="10" y2="10" />
+                  <path d="m9 16 2 2 4-4" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">Time Tracking</h3>
+              <p class="text-center text-muted-foreground">
+                Track time spent on tasks and projects. Generate reports and analyze productivity.
+              </p>
+            </div>
+            <div class="flex flex-col items-center p-6 space-y-2 border rounded-lg shadow-sm dark:border-gray-700">
+              <div class="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-6 h-6 text-primary"
+                >
+                  <path d="M17 6.1H3" />
+                  <path d="M21 12.1H3" />
+                  <path d="M15.1 18H3" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">Resource Management</h3>
+              <p class="text-center text-muted-foreground">
+                Allocate resources efficiently across projects and teams to maximize productivity.
+              </p>
+            </div>
+            <div class="flex flex-col items-center p-6 space-y-2 border rounded-lg shadow-sm dark:border-gray-700">
+              <div class="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-6 h-6 text-primary"
+                >
+                  <path d="M3 3v18h18" />
+                  <path d="m19 9-5 5-4-4-3 3" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">Analytics & Reporting</h3>
+              <p class="text-center text-muted-foreground">
+                Generate insightful reports and analytics to make data-driven decisions for your business.
+              </p>
+            </div>
+            <div class="flex flex-col items-center p-6 space-y-2 border rounded-lg shadow-sm dark:border-gray-700">
+              <div class="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-6 h-6 text-primary"
+                >
+                  <path d="M20 7h-9" />
+                  <path d="M14 17H5" />
+                  <circle cx="17" cy="17" r="3" />
+                  <circle cx="7" cy="7" r="3" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">Client Management</h3>
+              <p class="text-center text-muted-foreground">
+                Manage client information, projects, and communications all in one place.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+<!-- Pricing Section -->
+      <section id="pricing" class="w-full py-12 bg-muted dark:bg-muted/50">
+        <div class="container px-4 mx-auto">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center">
+            <div class="space-y-2">
+              <div class="inline-block px-3 py-1 text-sm rounded-lg bg-background dark:bg-background/50">
+                Pricing
+              </div>
+              <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                Choose the Right Plan for Your Team
+              </h2>
+              <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                We offer flexible pricing options to suit teams of all sizes.
+              </p>
+            </div>
+          </div>
+          <div class="grid max-w-5xl grid-cols-1 gap-6 py-12 mx-auto md:grid-cols-3">
+            <div class="flex flex-col border rounded-lg shadow-sm bg-card dark:border-gray-700">
+              <div class="p-6">
+                <h3 class="text-xl font-bold">Starter</h3>
+                <div class="flex items-baseline mt-4">
+                  <span class="text-3xl font-bold">$9</span>
+                  <span class="ml-1 text-muted-foreground">/month per user</span>
+                </div>
+                <p class="mt-4 text-muted-foreground">
+                  Perfect for small teams just getting started.
+                </p>
+                <ul class="mt-6 space-y-3">
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Up to 5 team members
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Basic project management
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Time tracking
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    5GB storage
+                  </li>
+                </ul>
+              </div>
+              <div class="p-6 pt-0 mt-auto">
+                <.link
+                  navigate={~p"/login"}
+                  class="inline-flex items-center justify-center w-full h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md shadow bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                >
+                  Start Free Trial
+                </.link>
+              </div>
+            </div>
+            <div class="relative flex flex-col border rounded-lg shadow-sm bg-card dark:border-gray-700">
+              <div class="absolute top-0 right-0 px-3 py-1 text-xs font-bold rounded-tr-lg rounded-bl-lg bg-primary text-primary-foreground">
+                Popular
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold">Professional</h3>
+                <div class="flex items-baseline mt-4">
+                  <span class="text-3xl font-bold">$19</span>
+                  <span class="ml-1 text-muted-foreground">/month per user</span>
+                </div>
+                <p class="mt-4 text-muted-foreground">
+                  For growing teams that need more features.
+                </p>
+                <ul class="mt-6 space-y-3">
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Up to 20 team members
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Advanced project management
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Time tracking & reporting
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Client management
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    20GB storage
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Priority support
+                  </li>
+                </ul>
+              </div>
+              <div class="p-6 pt-0 mt-auto">
+                <.link
+                  navigate={~p"/login"}
+                  class="inline-flex items-center justify-center w-full h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md shadow bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                >
+                  Start Free Trial
+                </.link>
+              </div>
+            </div>
+            <div class="flex flex-col border rounded-lg shadow-sm bg-card dark:border-gray-700">
+              <div class="p-6">
+                <h3 class="text-xl font-bold">Enterprise</h3>
+                <div class="flex items-baseline mt-4">
+                  <span class="text-3xl font-bold">$49</span>
+                  <span class="ml-1 text-muted-foreground">/month per user</span>
+                </div>
+                <p class="mt-4 text-muted-foreground">
+                  For large organizations with advanced needs.
+                </p>
+                <ul class="mt-6 space-y-3">
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Unlimited team members
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Enterprise-grade security
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Advanced analytics
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Custom integrations
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Unlimited storage
+                  </li>
+                  <li class="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 mr-2 text-primary"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    24/7 dedicated support
+                  </li>
+                </ul>
+              </div>
+              <div class="p-6 pt-0 mt-auto">
+                <button class="inline-flex items-center justify-center w-full h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md shadow bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                  Contact Sales
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+<!-- About Section -->
+      <section id="about" class="w-full py-12 md:py-24 lg:py-32">
+        <div class="container px-4 mx-auto">
+          <div class="grid gap-6 lg:grid-cols-2 lg:gap-12">
+            <div class="flex flex-col justify-center space-y-4">
+              <div class="space-y-2">
+                <div class="inline-block px-3 py-1 text-sm rounded-lg bg-muted dark:bg-muted/50">
+                  About Us
+                </div>
+                <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                  We're on a Mission to Simplify Project Management
+                </h2>
+                <p class="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  View Office - (Open Collaborative Platform) was founded with a simple goal: to make project management accessible, efficient, and
+                  collaborative for teams of all sizes.
+                </p>
+              </div>
+              <div class="space-y-2">
+                <p class="max-w-[600px] text-muted-foreground">
+                  Our team of experienced project managers and developers has created a platform that addresses the
+                  real challenges teams face every day. We believe that great work happens when teams have the right
+                  tools to collaborate effectively.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center justify-center">
+              <img
+                src="/images/team-photo.jpg"
+                width={550}
+                height={550}
+                alt="Team Photo"
+                class="object-cover border rounded-lg shadow-lg dark:border-gray-700"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      
+<!-- CTA Section -->
+      <section class="w-full py-12 md:py-24 lg:py-32 bg-muted dark:bg-muted/50">
+        <div class="container px-4 mx-auto">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center">
+            <div class="space-y-2">
+              <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                Ready to Transform Your Project Management?
+              </h2>
+              <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Join thousands of teams already using View Office - Open Collaborative Platform to streamline their workflows.
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 min-[400px]:flex-row">
+              <.link
+                navigate={~p"/login"}
+                class="inline-flex items-center justify-center h-10 px-8 text-sm font-medium transition-colors rounded-md shadow bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+              >
+                Get Started for Free
+              </.link>
+              <a
+                href="#features"
+                class="inline-flex items-center justify-center h-10 px-8 text-sm font-medium transition-colors border rounded-md shadow-sm border-input bg-background hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+<!-- Footer -->
+    <footer class="flex flex-col w-full gap-2 px-4 py-6 border-t sm:flex-row md:px-6 dark:border-gray-700">
+      <div class="flex-1">
+        <div class="flex items-center h-10">
+          <a href="/" class="flex items-center">
+            <h1 class="text-xl font-bold">View Office - Open Collaborative Platform</h1>
+          </a>
+        </div>
+        <p class="mt-2 text-sm text-muted-foreground">
+          &copy; {DateTime.utc_now().year} Ashin Technology. Some rights reserved.
+        </p>
+      </div>
+      <div class="flex flex-col gap-8 sm:flex-row md:gap-12 lg:gap-16">
+        <div class="space-y-2">
+          <h4 class="text-sm font-medium">Product</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#features" class="text-muted-foreground hover:underline">
+                Features
+              </a>
+            </li>
+            <li>
+              <a href="#pricing" class="text-muted-foreground hover:underline">
+                Pricing
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-muted-foreground hover:underline">
+                Integrations
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-muted-foreground hover:underline">
+                Changelog
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="space-y-2">
+          <h4 class="text-sm font-medium">Company</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#about" class="text-muted-foreground hover:underline">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-muted-foreground hover:underline">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-muted-foreground hover:underline">
+                Careers
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-muted-foreground hover:underline">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="space-y-2">
+          <h4 class="text-sm font-medium">Legal</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="text-muted-foreground hover:underline">
+                Terms of Service
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-muted-foreground hover:underline">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-muted-foreground hover:underline">
+                Cookie Policy
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

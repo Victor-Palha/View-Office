@@ -12,4 +12,14 @@ defmodule ViewOffice.Accounts.Services.GetById do
       user -> {:ok, user}
     end
   end
+
+  @spec fetch(integer()) :: {:ok, User.t()} | {:error, :not_found}
+  def fetch(id) do
+    User
+    |> Repo.get(id)
+    |> case do
+      nil -> {:error, :not_found}
+      user -> {:ok, user}
+    end
+  end
 end

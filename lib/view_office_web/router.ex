@@ -8,16 +8,44 @@ defmodule ViewOfficeWeb.Router do
     plug :put_root_layout, html: {ViewOfficeWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug ViewOfficeWeb.Plugs.FetchCurrentCollaborator
+  end
+
+  pipeline :ensure_authenticated do
+    plug ViewOfficeWeb.Plugs.EnsureAuthSession
+  end
+
+  pipeline :redirect_if_authenticated do
+    plug ViewOfficeWeb.Plugs.RedirectIfAuthenticated
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+    # Public routes
+  scope "/", ViewOfficeWeb do
+    pipe_through [:browser]
+
+    post "/auth/login", AuthController, :login
+
+    scope "/" do
+      pipe_through [:redirect_if_authenticated]
+
+      live "/", LandingLive.Index
+      live "/login", LoginLive.Index
+    end
+  end
+
   scope "/", ViewOfficeWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    post "/auth/logout", AuthController, :logout
+
+    live_session :default_auth,
+      on_mount: [{ViewOfficeWeb.Plugs.EnsureAuthLiveSession, :ensure_authenticated}] do
+      live "/dashboard", DashboardLive.Index
+    end
   end
 
   # Other scopes may use custom stacks.
