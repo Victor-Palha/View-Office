@@ -53,20 +53,6 @@ defmodule ViewOfficeWeb.Ui.Sidebar do
             Management
           </p>
           <.sidebar_link
-            href="/collaborators"
-            icon="hero-users"
-            label="Collaborators"
-            active={@active}
-            collapsed={@collapsed}
-          />
-          <.sidebar_link
-            href="/teams"
-            icon="hero-user-group"
-            label="Teams"
-            active={@active}
-            collapsed={@collapsed}
-          />
-          <.sidebar_link
             href="/projects"
             icon="hero-briefcase"
             label="Projects"
@@ -74,16 +60,9 @@ defmodule ViewOfficeWeb.Ui.Sidebar do
             collapsed={@collapsed}
           />
           <.sidebar_link
-            href="/clients"
-            icon="hero-user-plus"
-            label="Clients"
-            active={@active}
-            collapsed={@collapsed}
-          />
-          <.sidebar_link
-            href="/timesheets"
-            icon="hero-clock"
-            label="Timesheets"
+            href="/members"
+            icon="hero-users"
+            label="Members"
             active={@active}
             collapsed={@collapsed}
           />
