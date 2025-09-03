@@ -37,18 +37,18 @@ defmodule ViewOfficeWeb.SessionsAuth do
 
       sign_in(conn, %Collaborator{id: 1, name: "João", role: "admin"})
   """
-  def sign_in(conn, collaborator) do
+  def sign_in(conn, user) do
     {:ok, token, _claims} =
-      Guardian.generate_token(collaborator, :main_token, collaborator.role)
+      Guardian.generate_token(user, :main_token, user.role)
 
     {:ok, refresh_token, _claims} =
-      Guardian.generate_token(collaborator, :refresh_token, collaborator.role)
+      Guardian.generate_token(user, :refresh_token, user.role)
 
     conn
     |> renew_session()
     |> put_token_in_session(token)
     |> put_refresh_cookie(refresh_token)
-    |> put_flash(:info, "Welcome back, #{collaborator.name}!")
+    |> put_flash(:info, "Welcome back, #{user.name}!")
     |> redirect(to: ~p"/dashboard")
   end
 
@@ -81,8 +81,8 @@ defmodule ViewOfficeWeb.SessionsAuth do
   @doc false
   defp put_token_in_session(conn, token) do
     conn
-    |> put_session(:collaborator_token, token)
-    |> put_session(:live_socket_id, "collaborators_sessions:#{Base.url_encode64(token)}")
+    |> put_session(:user_token, token)
+    |> put_session(:live_socket_id, "user_sessions:#{Base.url_encode64(token)}")
   end
 
   defp put_refresh_cookie(conn, refresh_token) do

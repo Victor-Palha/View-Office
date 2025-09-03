@@ -13,6 +13,11 @@ defmodule ViewOffice.Accounts.Services.GetById do
     end
   end
 
+  @spec call!(integer(), %UserScope{}) :: any()
+  def call!(id, %UserScope{} = _scope) do
+    Repo.get!(User, id)
+  end
+
   @spec fetch(integer()) :: {:ok, User.t()} | {:error, :not_found}
   def fetch(id) do
     User

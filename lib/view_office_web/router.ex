@@ -38,6 +38,19 @@ defmodule ViewOfficeWeb.Router do
   end
 
   scope "/", ViewOfficeWeb do
+    pipe_through [:browser, :ensure_authenticated]
+
+    live_session :admin_auth,
+      on_mount: [
+        {ViewOfficeWeb.Plugs.EnsureAuthLiveSession, {:ensure_authenticated_with_role, "ADMIN"}}
+      ] do
+      live "/users/new", UserLive.Index, :new
+      live "/users/:id/edit", UserLive.Index, :edit
+      live "/users/:id/delete", UserLive.Index, :delete
+    end
+  end
+
+  scope "/", ViewOfficeWeb do
     pipe_through :browser
 
     post "/auth/logout", AuthController, :logout
@@ -45,6 +58,9 @@ defmodule ViewOfficeWeb.Router do
     live_session :default_auth,
       on_mount: [{ViewOfficeWeb.Plugs.EnsureAuthLiveSession, :ensure_authenticated}] do
       live "/dashboard", DashboardLive.Index
+      live "/users", UserLive.Index, :index
+      live "/users/:id", UserLive.Show, :show
+
     end
   end
 

@@ -29,7 +29,7 @@ defmodule ViewOfficeWeb.Plugs.EnsureAuthLiveSession do
   def on_mount(:ensure_authenticated, _params, session, socket) do
     socket = mount_current_collaborator(socket, session)
 
-    if socket.assigns[:current_collaborator] do
+    if socket.assigns[:current_user] do
       {:cont, socket}
     else
       redirect_unauthenticated(socket)
@@ -40,7 +40,7 @@ defmodule ViewOfficeWeb.Plugs.EnsureAuthLiveSession do
       when required_role in @roles do
     socket = mount_current_collaborator(socket, session)
 
-    case socket.assigns[:current_collaborator] do
+    case socket.assigns[:current_user] do
       %User{role: ^required_role} -> {:cont, socket}
       %User{} -> redirect_unauthorized(socket)
       _ -> redirect_unauthenticated(socket)
@@ -52,7 +52,7 @@ defmodule ViewOfficeWeb.Plugs.EnsureAuthLiveSession do
     if Enum.all?(allowed_roles, fn role -> role in @roles end) do
       socket = mount_current_collaborator(socket, session)
 
-      case socket.assigns[:current_collaborator] do
+      case socket.assigns[:current_user] do
         %User{role: role} ->
           if role in allowed_roles do
             {:cont, socket}
@@ -89,12 +89,12 @@ defmodule ViewOfficeWeb.Plugs.EnsureAuthLiveSession do
 
   @doc false
   defp mount_current_collaborator(socket, session) do
-    Component.assign_new(socket, :current_collaborator, fn ->
+    Component.assign_new(socket, :current_user, fn ->
       get_current_collaborator(session)
     end)
   end
 
-  defp get_current_collaborator(%{"collaborator_token" => token}) when not is_nil(token) do
+  defp get_current_collaborator(%{"user_token" => token}) when not is_nil(token) do
     with {:ok, claims} <- Guardian.verify_token_type(token, "main"),
          {:ok, %User{} = user} <-
            ViewOffice.Accounts.Services.GetById.fetch(claims["sub"]) do

@@ -1,0 +1,67 @@
+<div class="flex flex-col h-screen bg-gray-50">
+  <div class="flex flex-1">
+    <ViewOfficeWeb.Ui.Sidebar.call
+      current_user={@current_user}
+      active="/users"
+      collapsed={@sidebar_collapsed}
+    />
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <!-- Header -->
+      <header class="bg-white dark:bg-gray-800 shadow-sm">
+        <div class="flex items-center justify-between px-6 py-4">
+          <div class="flex items-center space-x-4">
+            <h1 class="text-xl font-semibold text-gray-900 dark:text-white">
+              {@user.name || "User Profile"}
+            </h1>
+          </div>
+        </div>
+      </header>
+      
+<!-- Main Content -->
+      <main class="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900">
+        <div class="mx-auto">
+          <div class="mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+            <!-- header profile -->
+            <div class="bg-gradient-to-r from-blue-500 to-green-600 h-32 relative">
+              <div class="absolute -bottom-16 left-6">
+                <div class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 bg-gray-200 dark:bg-gray-600 overflow-hidden">
+                  <!-- Avatar placeholder -->
+                  <svg class="h-full w-full text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            
+<!-- Content profile -->
+            <div class="pt-20 px-6 pb-6">
+              <div class="flex justify-between items-start mb-6">
+                <div>
+                  <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+                    {@user.name}
+                  </h1>
+                </div>
+              </div>
+              
+<!-- Bio -->
+              
+<!-- Details -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                  <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                    Contact
+                  </h3>
+                  <p class="text-gray-900 dark:text-white font-medium">
+                    {@current_user.email}
+                  </p>
+                </div>
+              </div>
+              <%!-- Skills --%>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

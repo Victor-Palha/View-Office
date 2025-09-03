@@ -18,25 +18,25 @@ defmodule ViewOfficeWeb.Plugs.FetchCurrentCollaborator do
          {:ok, claims} <- verify_token(token),
          {:ok, collaborator} <- get_collaborator(claims["sub"]) do
       conn
-      |> put_session(:collaborator_token, token)
-      |> assign(:current_collaborator, collaborator)
+      |> put_session(:user_token, token)
+      |> assign(:current_user, collaborator)
     else
       {:error, _reason} ->
         # If the token is invalid or expired, try to refresh it using the refresh token
         case try_refresh_token(conn) do
           {:ok, token, collaborator} ->
             conn
-            |> put_session(:collaborator_token, token)
-            |> assign(:current_collaborator, collaborator)
+            |> put_session(:user_token, token)
+            |> assign(:current_user, collaborator)
 
           {:error, _} ->
-            assign(conn, :current_collaborator, nil)
+            assign(conn, :current_user, nil)
         end
     end
   end
 
   defp recover_token(conn) do
-    case get_session(conn, :collaborator_token) do
+    case get_session(conn, :user_token) do
       nil -> {:error, :no_token}
       token -> {:ok, token}
     end

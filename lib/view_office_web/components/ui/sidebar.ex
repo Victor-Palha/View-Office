@@ -2,7 +2,7 @@ defmodule ViewOfficeWeb.Ui.Sidebar do
   use Phoenix.Component
   import ViewOfficeWeb.CoreComponents, only: [icon: 1]
 
-  attr :current_collaborator, :map, required: true
+  attr :current_user, :map, required: true
   attr :collapsed, :boolean, default: false
   attr :active, :string, default: "/dashboard"
 
@@ -60,9 +60,9 @@ defmodule ViewOfficeWeb.Ui.Sidebar do
             collapsed={@collapsed}
           />
           <.sidebar_link
-            href="/members"
+            href="/users"
             icon="hero-users"
-            label="Members"
+            label="Users"
             active={@active}
             collapsed={@collapsed}
           />
@@ -91,15 +91,15 @@ defmodule ViewOfficeWeb.Ui.Sidebar do
         ]}>
           <div class="flex items-center space-x-3 min-w-0">
             <div class="h-8 w-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-200 font-medium flex-shrink-0">
-              {String.first(@current_collaborator.name)}
+              {String.first(@current_user.name)}
             </div>
             <%= if !@collapsed do %>
               <div class="truncate">
                 <p class="text-sm font-medium text-gray-700 dark:text-gray-200 truncate">
-                  {@current_collaborator.name}
+                  {@current_user.name}
                 </p>
                 <p class="text-xs text-gray-500 dark:text-gray-400 truncate">
-                  {@current_collaborator.email || "Admin"}
+                  {@current_user.email || "Admin"}
                 </p>
               </div>
             <% end %>

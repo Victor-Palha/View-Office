@@ -11,12 +11,12 @@ defmodule ViewOfficeWeb.Plugs.RedirectIfAuthenticated do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    if conn.assigns[:current_collaborator] do
+    if conn.assigns[:current_user] do
       conn
       |> redirect(to: ~p"/dashboard")
       |> halt()
     else
-      IO.inspect(conn.assigns[:current_collaborator], label: "Not authenticated")
+      IO.inspect(conn.assigns[:current_user], label: "Not authenticated")
       conn
     end
   end
